@@ -1,8 +1,9 @@
+import "dotenv/config"
 import mongoose from "mongoose";
 
 export async function connectDB() {
     try {
-        await mongoose.connect("mongodb+srv://hamdyelmady1_db_user:kLOn6AbpOzHl67sH@cluster0.vowapjl.mongodb.net/");
+        await mongoose.connect(process.env.MONGOOSE);
         console.log("Connected to MongoDB successfully")
         return mongoose
     } catch (errror) {
@@ -12,7 +13,6 @@ export async function connectDB() {
     }
 }
 
-// Call this only when your application terminates
 export async function disconnectFromMongoDB() {
   await mongoose.connection.close();
 }
